@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About Us - 12th and Pine</title>
+  <title>Events - 12th & Pine</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
   <!-- Font Awesome for Icons -->
@@ -28,6 +28,7 @@
       --card-bg: #fff;
       --shadow-color: rgba(0, 0, 0, 0.2);
       --transition-speed: 0.3s;
+      --overlay-bg: rgba(0, 0, 0, 0.4);
     }
 
     /* Dark Mode Variables */
@@ -166,30 +167,27 @@
       transform: translateX(26px);
     }
 
-    /* About Us Section */
-    .about-section {
-      margin-top: 80px; /* Adjusted for fixed header */
-      padding: 60px 20px;
-      text-align: center;
+    /* Main Content */
+    .container {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 20px;
       background-color: var(--card-bg);
-      transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
       box-shadow: 0 10px 30px var(--shadow-color);
       border-radius: 10px;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
+      transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
     }
 
-    /* About Us Heading */
-    .about-section h1 {
+    h1 {
       font-family: 'Playfair Display', serif;
       font-size: 3em;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      text-align: center;
       color: var(--primary-color);
       position: relative;
     }
 
-    .about-section h1::after {
+    h1::after {
       content: '';
       width: 80px;
       height: 4px;
@@ -199,105 +197,120 @@
       border-radius: 2px;
     }
 
-    /* About Us Text */
-    .about-section p {
-      font-family: 'Lora', serif;
+    p {
       font-size: 1.2em;
+      margin-bottom: 30px;
+      text-align: center;
       color: var(--light-text);
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.8;
-      padding-bottom: 20px;
-      border-bottom: 2px solid var(--primary-color);
     }
 
-    /* Button Styling */
-    .btn-home {
-      margin-top: 40px;
-      display: inline-block;
+    /* Form Styling */
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    input, textarea, select {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: 'Lora', serif;
+      font-size: 1em;
+      transition: border-color var(--transition-speed);
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent-color);
+      outline: none;
+    }
+
+    input[type="submit"] {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color var(--transition-speed), transform 0.2s;
+      border-radius: 5px;
       padding: 12px 25px;
       font-size: 1.1em;
       font-family: 'Lora', serif;
-      color: white;
-      background-color: var(--primary-color);
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background-color var(--transition-speed), transform 0.3s ease;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
-    /* Hover effect for button */
-    .btn-home:hover {
+    input[type="submit"]:hover {
       background-color: #9c6f42;
-      transform: translateY(-3px);
+      transform: scale(1.05);
     }
 
-    /* Our Story Accordion */
-    .story-accordion {
-      margin-top: 50px;
-      text-align: left;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .accordion-item {
-      background-color: var(--card-bg);
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin-bottom: 15px;
-      box-shadow: 0 5px 15px var(--shadow-color);
-      transition: max-height var(--transition-speed), box-shadow var(--transition-speed);
-    }
-
-    .accordion-header {
-      padding: 15px 20px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
+    /* Thank You Modal Styling */
+    .thank-you-modal {
+      display: none; /* Hidden initially */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
       align-items: center;
+      z-index: 2000;
+      animation: fadeIn 0.5s;
+    }
+
+    .thank-you-modal-content {
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 10px 30px var(--shadow-color);
+      position: relative;
+      animation: slideDown 0.5s;
+    }
+
+    .thank-you-modal-content h2 {
       font-family: 'Playfair Display', serif;
+      font-size: 2.5em;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .thank-you-modal-content p {
+      font-size: 1.2em;
+      color: var(--text-color);
+      margin-bottom: 30px;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 20px;
       font-size: 1.5em;
       color: var(--text-color);
-      background-color: transparent;
-      transition: background-color var(--transition-speed);
+      cursor: pointer;
+      transition: color var(--transition-speed);
     }
 
-    .accordion-header:hover {
-      background-color: #f0f0f0;
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height var(--transition-speed);
-      padding: 0 20px;
-    }
-
-    .accordion-content p {
-      font-family: 'Lora', serif;
-      font-size: 1em;
-      color: var(--light-text);
-      margin: 15px 0;
-      line-height: 1.6;
-    }
-
-    .accordion-item.active .accordion-content {
-      max-height: 500px; /* Adjust as needed */
-    }
-
-    .accordion-item.active {
-      box-shadow: 0 10px 25px var(--shadow-color);
-    }
-
-    .accordion-icon {
-      font-size: 1.2em;
+    .close-modal:hover {
       color: var(--accent-color);
-      transition: transform var(--transition-speed);
     }
 
-    .accordion-item.active .accordion-icon {
-      transform: rotate(180deg);
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     /* Footer Styling */
@@ -327,30 +340,7 @@
       color: var(--accent-color);
     }
 
-    /* Animation Keyframes */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive Styling */
+    /* Responsive Design */
     @media (max-width: 768px) {
       .nav-links {
         position: absolute;
@@ -375,15 +365,16 @@
         display: flex;
       }
 
-      .about-section {
-        padding: 40px 15px;
+      .container {
+        margin: 100px 15px;
+        padding: 20px;
       }
 
-      .about-section h1 {
+      h1 {
         font-size: 2.5em;
       }
 
-      .about-section p {
+      p {
         font-size: 1.1em;
       }
 
@@ -391,23 +382,15 @@
         padding: 10px 20px;
         font-size: 1em;
       }
-
-      .story-accordion {
-        padding: 0 10px;
-      }
     }
 
     @media (max-width: 480px) {
-      .about-section h1 {
+      h1 {
         font-size: 2em;
       }
 
-      .about-section p {
+      p {
         font-size: 1em;
-      }
-
-      .accordion-header {
-        font-size: 1.3em;
       }
     }
   </style>
@@ -425,8 +408,8 @@
       </div>
       <ul class="nav-links" id="nav-links">
         <li><a href="bushrawebsite1.html">Home</a></li>
-        <li><a href="aboutus.html" class="active">About Us</a></li>
-        <li><a href="events.html">Events</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="events.html" class="active">Events</a></li>
         <li><a href="collections.html">Collections</a></li>
         <li><a href="recipes.html">Recipes</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -440,64 +423,50 @@
     </nav>
   </header>
 
-  <!-- About Us Section -->
-  <div class="about-section">
-    <h1>About 12th & Pine</h1>
-    <p>
-      Welcome to 12th & Pine. We specialize in providing fine wines and spirits from around the world. Our passion for wine
-      drives us to carefully curate an exquisite collection that reflects the richness of tradition and the elegance of the modern
-      era. Whether you’re looking to savor a moment of luxury or to celebrate an occasion with something extraordinary, we are
-      here to offer you a unique experience in every bottle. Join us at 12th & Pine, where every sip tells a story.
-    </p>
-    <a href="bushrawebsite1.html" class="btn-home">Back to Home</a>
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Host Your Event with Us</h1>
+    <p>Fill out the form below to inquire about catering your next event.</p>
 
-    <!-- Our Story Accordion -->
-    <div class="story-accordion">
-      <!-- Accordion Item 1 -->
-      <div class="accordion-item">
-        <div class="accordion-header">
-          <h3>Our Mission</h3>
-          <i class="fas fa-chevron-down accordion-icon"></i>
-        </div>
-        <div class="accordion-content">
-          <p>
-            At 12th & Pine, our mission is to provide an unparalleled selection of fine wines and spirits that cater to both
-            connoisseurs and casual enthusiasts. We believe in the art of storytelling through every bottle, offering our
-            customers not just products, but experiences that celebrate craftsmanship, heritage, and innovation.
-          </p>
-        </div>
-      </div>
+    <!-- Inquiry Form -->
+    <form id="inquiryForm" aria-labelledby="form-heading">
+      <label for="name">Name<span style="color: red;">*</span>:</label>
+      <input type="text" id="name" name="name" required aria-required="true" placeholder="Your Full Name">
 
-      <!-- Accordion Item 2 -->
-      <div class="accordion-item">
-        <div class="accordion-header">
-          <h3>Our History</h3>
-          <i class="fas fa-chevron-down accordion-icon"></i>
-        </div>
-        <div class="accordion-content">
-          <p>
-            Founded in 2010, 12th & Pine began as a small boutique store with a vision to bring the finest wines and spirits
-            from renowned vineyards and distilleries to our local community. Over the years, we have expanded our offerings,
-            established partnerships with top producers worldwide, and built a loyal customer base that values quality and
-            authenticity.
-          </p>
-        </div>
-      </div>
+      <label for="email">Email<span style="color: red;">*</span>:</label>
+      <input type="email" id="email" name="email" required aria-required="true" placeholder="you@example.com">
 
-      <!-- Accordion Item 3 -->
-      <div class="accordion-item">
-        <div class="accordion-header">
-          <h3>Our Team</h3>
-          <i class="fas fa-chevron-down accordion-icon"></i>
-        </div>
-        <div class="accordion-content">
-          <p>
-            Our team is composed of passionate individuals who share a deep appreciation for fine wines and spirits. From
-            sommeliers to sales experts, each member brings unique expertise and dedication to ensure that our customers receive
-            personalized recommendations and exceptional service.
-          </p>
-        </div>
-      </div>
+      <label for="phone">Phone Number<span style="color: red;">*</span>:</label>
+      <input type="tel" id="phone" name="phone" required aria-required="true" placeholder="+1 (555) 123-4567">
+
+      <label for="event_date">Event Date<span style="color: red;">*</span>:</label>
+      <input type="date" id="event_date" name="event_date" required aria-required="true">
+
+      <label for="guests">Number of Guests<span style="color: red;">*</span>:</label>
+      <input type="number" id="guests" name="guests" required aria-required="true" min="1" placeholder="e.g., 50">
+
+      <label for="event_type">Event Type:</label>
+      <select id="event_type" name="event_type" aria-label="Select Event Type">
+        <option value="wedding">Wedding</option>
+        <option value="corporate">Corporate Event</option>
+        <option value="birthday">Birthday Party</option>
+        <option value="anniversary">Anniversary</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="message">Additional Details:</label>
+      <textarea id="message" name="message" rows="5" placeholder="Tell us more about your event..."></textarea>
+
+      <input type="submit" value="Send Inquiry" aria-label="Submit Inquiry">
+    </form>
+  </div>
+
+  <!-- Thank You Modal -->
+  <div class="thank-you-modal" id="thankYouModal" role="dialog" aria-modal="true" aria-labelledby="thankYouTitle">
+    <div class="thank-you-modal-content">
+      <span class="close-modal" id="closeModal" aria-label="Close Thank You Message">&times;</span>
+      <h2 id="thankYouTitle">Thank You!</h2>
+      <p>Your inquiry has been received. Someone will respond within 48 hours.</p>
     </div>
   </div>
 
@@ -545,22 +514,40 @@
       }
     });
 
-    // Accordion Functionality
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    // Form Submission Handling
+    const inquiryForm = document.getElementById('inquiryForm');
+    const thankYouModal = document.getElementById('thankYouModal');
+    const closeModal = document.getElementById('closeModal');
 
-    accordionHeaders.forEach(header => {
-      header.addEventListener('click', () => {
-        const parent = header.parentElement;
-        const isActive = parent.classList.contains('active');
+    inquiryForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting the traditional way
 
-        document.querySelectorAll('.accordion-item').forEach(item => {
-          item.classList.remove('active');
-        });
+      // Here, you can add AJAX to submit form data to the server if needed
 
-        if (!isActive) {
-          parent.classList.add('active');
-        }
-      });
+      // Show the thank-you modal
+      thankYouModal.style.display = 'flex';
+
+      // Reset the form
+      inquiryForm.reset();
+    });
+
+    // Close Modal Functionality
+    closeModal.addEventListener('click', () => {
+      thankYouModal.style.display = 'none';
+    });
+
+    // Close Modal when clicking outside the modal content
+    window.addEventListener('click', (e) => {
+      if (e.target == thankYouModal) {
+        thankYouModal.style.display = 'none';
+      }
+    });
+
+    // Accessibility: Close modal with Esc key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && thankYouModal.style.display === 'flex') {
+        thankYouModal.style.display = 'none';
+      }
     });
   </script>
 </body>
